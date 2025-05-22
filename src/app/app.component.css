@@ -1,0 +1,40 @@
+.sidenav-container {
+  height: 100v;
+}
+
+.sidenav {
+  width: 250px;
+  height: 100vh;
+  z-index: 10;
+
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.menu-button {
+  display: none;
+}
+
+/* Show hamburger menu and hide nav links on small screens */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-button {
+    display: inline-flex;
+  }
+}

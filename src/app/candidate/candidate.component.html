@@ -1,0 +1,68 @@
+<div class="employee-container">
+  <h2>Candidates</h2>
+
+  <div class="form-table-container">
+    <!-- Table (left) -->
+    <div class="employee-table">
+      <table mat-table [dataSource]="candidates" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let e">{{ e.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let e">{{ e.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef>Phone</th>
+          <td mat-cell *matCellDef="let e">{{ e.phone }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="appliedPosition">
+          <th mat-header-cell *matHeaderCellDef>Applied Position</th>
+          <td mat-cell *matCellDef="let e">{{ e.appliedPosition }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let e">
+            <button mat-button (click)="edit(e)">Edit</button>
+            <button mat-button color="warn" (click)="delete(e.id)">Delete</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+    </div>
+
+    <!-- Form (right) -->
+    <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="employee-form">
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Name" [(ngModel)]="formData.name" name="name" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Email" [(ngModel)]="formData.email" name="email" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="phone" [(ngModel)]="formData.phone" name="phone" type="number" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Applied Position" [(ngModel)]="formData.appliedPosition" name="appliedPosition" required />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">
+          {{ formData.id ? 'Update' : 'Add' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

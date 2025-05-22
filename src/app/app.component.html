@@ -1,2 +1,41 @@
-<p>hi there</p>
+<mat-sidenav-container class="sidenav-container">
+  <!-- Side Navigation for Small Screens -->
+  <mat-sidenav #sidenav mode="over" class="sidenav" [opened]="false">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" (click)="sidenav.close()">Employees</a>
+      <a mat-list-item routerLink="/candidate" (click)="sidenav.close()">Candidates</a>
+      <a mat-list-item routerLink="/candidates" (click)="sidenav.close()">More Candidates</a>
+      <a mat-list-item routerLink="/candidates" (click)="sidenav.close()">Companies</a>
+      <a mat-list-item routerLink="/salary" (click)="sidenav.close()">Salary</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main Content -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <!-- Hamburger Menu for Small Screens -->
+      <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <!-- App Title -->
+      <span class="logo" routerLink="/">HR System</span>
+
+      <!-- Spacer -->
+      <span class="spacer"></span>
+
+      <!-- Navigation for Large Screens -->
+      <div class="nav-links">
+        <button mat-button routerLink="/">Employees</button>
+        <button mat-button routerLink="/candidate">Candidates</button>
+        <button mat-button routerLink="/candidates">More Candidates</button>
+        <button mat-button routerLink="/candidates">Companies</button>
+        <button mat-button routerLink="/salary">Salary</button>
+      </div>
+    </mat-toolbar>
+
+    <!-- Main page content goes here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 <router-outlet></router-outlet>
