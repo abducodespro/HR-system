@@ -1,8 +1,23 @@
-<div class="employee-container">
+<div class="dpt-container">
   <h2>Departments</h2>
 
   <div class="form-table-container">
-    <div class="employee-table">
+    <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="dpt-form">
+      <div class="form-group">
+        <h4>Add/Edit Form</h4>
+
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Name" [(ngModel)]="formData.name" name="name" required />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">
+          {{ formData.id ? 'Update' : 'Add' }}
+        </button>
+      </div>
+    </form>
+
+    <div class="dpt-table">
+      <h3>Department List</h3>
       <table mat-table [dataSource]="departments" class="mat-elevation-z8">
 
         <ng-container matColumnDef="id">
@@ -28,21 +43,5 @@
 
       </table>
     </div>
-
-    <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="employee-form">
-      <div class="form-group">
-        <mat-form-field appearance="fill">
-          <input matInput placeholder="ID" [(ngModel)]="formData.id" name="id" required />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <input matInput placeholder="Name" [(ngModel)]="formData.name" name="name" required />
-        </mat-form-field>
-
-        <button mat-raised-button color="primary" type="submit">
-          {{ formData.id ? 'Update' : 'Add' }}
-        </button>
-      </div>
-    </form>
   </div>
 </div>

@@ -3,5 +3,6 @@ export interface Employee{
     name: string;
     position: string;
     departmentId: number;
+    phone: number;
     salary: number;
 }

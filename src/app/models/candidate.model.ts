@@ -3,5 +3,7 @@ export interface Candidate {
     name: string;
     email: string;
     phone: number;
-    appliedPosition: string;
+    position: string;
+    departmentId: number;
+    salary: number;
 }

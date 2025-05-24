@@ -1,9 +1,30 @@
-<div class="employee-container">
+<div class="salary-container">
   <h2>Salaries</h2>
 
   <div class="form-table-container">
-    <!-- Table (left) -->
-    <div class="employee-table">
+    <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="salary-form">
+      <div class="form-group">
+        <h4>Add/Edit Form</h4>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="employee" [(ngModel)]="formData.employee" name="employee" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="amount" [(ngModel)]="formData.amount" name="amount" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="date" [(ngModel)]="formData.date" name="date"  required />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">
+          {{ formData.id ? 'Update' : 'Add' }}
+        </button>
+      </div>
+    </form>
+
+    <div class="salary-table">
+      <h3>Salary List</h3>
       <table mat-table [dataSource]="salaries" class="mat-elevation-z8">
 
         <ng-container matColumnDef="employee">
@@ -35,24 +56,6 @@
       </table>
     </div>
 
-    <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="employee-form">
-      <div class="form-group">
-        <mat-form-field appearance="fill">
-          <input matInput placeholder="employee" [(ngModel)]="formData.employee" name="employee" required />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <input matInput placeholder="amount" [(ngModel)]="formData.amount" name="amount" required />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <input matInput placeholder="date" [(ngModel)]="formData.date" name="date"  required />
-        </mat-form-field>
-
-        <button mat-raised-button color="primary" type="submit">
-          {{ formData.id ? 'Update' : 'Add' }}
-        </button>
-      </div>
-    </form>
+    
   </div>
 </div>

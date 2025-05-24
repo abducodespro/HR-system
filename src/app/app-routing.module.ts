@@ -5,10 +5,12 @@ import { CandidateComponent } from './candidate/candidate.component';
 import { DepartmentComponent } from './department/department.component';
 import { SalaryComponent } from './salary/salary.component';
 import { CompanyComponent } from './company/company.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  {path:'', component: EmployeeComponent},
+  {path:'', component: HomeComponent},
+  {path:'employee', component: EmployeeComponent},
   {path:'candidate', component: CandidateComponent},
   {path:'department', component: DepartmentComponent},
   {path:'salary', component: SalaryComponent},

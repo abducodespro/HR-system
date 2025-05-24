@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Candidate } from '../models/candidate.model';
 import { CandidateService } from '../services/candidate.service';
+import { Department } from '../models/department.model';
+import { DepartmentService } from '../services/department.service';
+import { EmployeeService } from '../services/employee.service';
+import { Employee } from '../models/employee.model';
 
 @Component({
   selector: 'app-candidate',
@@ -8,18 +12,29 @@ import { CandidateService } from '../services/candidate.service';
   styleUrls: ['./candidate.component.css']
 })
 export class CandidateComponent implements OnInit {
-  candidates: Candidate[] = []
-  formData: Candidate = { id: 0, name: '', email: '', phone: null, appliedPosition: '' }
+  candidates: Candidate[] = [];
+  employees: Employee[] = [];
+  dpts: Department[] = [];
+  formData: Candidate = { id: 0, name: '', email: '', phone: null, position: '', departmentId: 0, salary:0 }
   displayedColumns: string[] = ['name', 'email', 'phone', 'appliedPosition', 'actions']
 
-  constructor(private candService: CandidateService) { }
+  constructor(private candService: CandidateService, private dptService: DepartmentService,
+    private emplService: EmployeeService
+  ) { }
 
   ngOnInit() {
     this.loadCandidates();
+    this.dptService.getDepartments().subscribe(data => this.dpts = data);
+    this.emplService.getEmployees().subscribe(data => this.employees = data)
   }
 
   loadCandidates() {
     this.candService.getCandidates().subscribe(data => this.candidates = data)
+  }
+
+  getDepartmentName(id: number): string{
+    const dept = this.dpts.find(d => d.id === id)
+    return dept ? dept.name : 'Unknown';
   }
 
   onSubmit() {
@@ -31,6 +46,32 @@ export class CandidateComponent implements OnInit {
     this.resetForm();
   }
 
+  hire(id: number) {
+  const maxId = this.employees.length ? Math.max(...this.employees.map(d => d.id)) : 0;
+  const empId = maxId + 1;
+
+  const candidate = this.candidates.find(d => d.id === id);
+  if (!candidate) {
+    console.error('Candidate not found');
+    return;
+  }
+
+  const newEmployee: Employee = {
+    id: empId,
+    name: candidate.name,
+    position: candidate.position,
+    departmentId: candidate.departmentId,
+    phone: candidate.phone,
+    salary: candidate.salary,
+  };
+
+  this.emplService.addEmployee(newEmployee).subscribe(() => {
+    console.log('Employee hired successfully');
+    this.loadCandidates(); 
+  });
+}
+
+
   edit(candidate: Candidate) {
     this.formData = { ...candidate };
   }
@@ -40,7 +81,7 @@ export class CandidateComponent implements OnInit {
   }
 
   resetForm() {
-    this.formData = { id: 0, name: '', email: '', phone: 0, appliedPosition: '' };
+    this.formData = { id: 0, name: '', email: '', phone: 0, position: '', departmentId: 0, salary: 0 };
   }
 
 }
