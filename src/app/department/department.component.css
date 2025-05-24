@@ -1,0 +1,36 @@
+.employee-container {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+}
+.form-table-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-direction: row; 
+}
+
+/* Table on the left */
+.employee-table {
+  flex: 2 1 600px;
+  overflow-x: aut;
+  white-space: nowrap;
+}
+
+/* Form on the right */
+.employee-form {
+  flex: 1 1 300px;
+  max-width: 400px;
+  
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #4CAF50;
+  gap: 1rem;
+  padding: 10px;
+}

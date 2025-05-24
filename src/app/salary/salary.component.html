@@ -1,23 +1,24 @@
 <div class="employee-container">
-  <h2>Companies</h2>
+  <h2>Salaries</h2>
 
   <div class="form-table-container">
+    <!-- Table (left) -->
     <div class="employee-table">
-      <table mat-table [dataSource]="companies" class="mat-elevation-z8">
+      <table mat-table [dataSource]="salaries" class="mat-elevation-z8">
 
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>ID</th>
-          <td mat-cell *matCellDef="let e">{{ e.id }}</td>
+        <ng-container matColumnDef="employee">
+          <th mat-header-cell *matHeaderCellDef>Employee</th>
+          <td mat-cell *matCellDef="let e">{{ e.employee }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let e">{{ e.name }}</td>
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
+          <td mat-cell *matCellDef="let e">{{ e.amount }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="location">
-          <th mat-header-cell *matHeaderCellDef>Location</th>
-          <td mat-cell *matCellDef="let e">{{ e.location }}</td>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let e">{{ e.date }}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
@@ -28,7 +29,7 @@
           </td>
         </ng-container>
 
-        <tr mat-header-row  *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       </table>
@@ -37,15 +38,15 @@
     <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="employee-form">
       <div class="form-group">
         <mat-form-field appearance="fill">
-          <input matInput placeholder="ID" [(ngModel)]="formData.id" name="id" required />
+          <input matInput placeholder="employee" [(ngModel)]="formData.employee" name="employee" required />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-          <input matInput placeholder="Name" [(ngModel)]="formData.name" name="name" required />
+          <input matInput placeholder="amount" [(ngModel)]="formData.amount" name="amount" required />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-          <input matInput placeholder="location" [(ngModel)]="formData.location" name="location" required />
+          <input matInput placeholder="date" [(ngModel)]="formData.date" name="date"  required />
         </mat-form-field>
 
         <button mat-raised-button color="primary" type="submit">

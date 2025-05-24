@@ -15,6 +15,8 @@ import { DepartmentComponent } from './department/department.component';
 import { CompanyComponent } from './company/company.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { SalaryComponent } from './salary/salary.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MatListModule } from '@angular/material/list';
     EmployeeComponent,
     CandidateComponent,
     DepartmentComponent,
-    CompanyComponent
+    CompanyComponent,
+    SalaryComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
