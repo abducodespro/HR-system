@@ -1,5 +1,8 @@
 .employee-container {
   padding: 20px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color) !important;
 }
 
 table {
@@ -11,13 +14,13 @@ table {
   flex-wrap: wrap;
   gap: 1rem;
   align-items: flex-start;
-  flex-direction: row; 
+  flex-direction: row;
 }
 
 .employee-table {
   flex: 2 1 500px;
   overflow-x: auto;
-  border: 1px solid #121d12;
+  border: 1px solid var(--text-color);
   white-space: nowrap;
   max-width: 100%;
   padding: 10px;
@@ -37,14 +40,14 @@ table {
   }
 
   .employee-table table {
-    min-width: 600px; 
-    
+    min-width: 600px;
+
   }
 }
 
 .employee-form {
   flex: 1 1 300px;
-  max-width: 350px;
+  max-width: 400px;
   max-height: 600px;
 }
 
@@ -52,11 +55,20 @@ table {
   display: flex;
   flex-direction: column;
   border: 1px solid #4CAF50;
-  gap: 2px;
+  gap: 0px;
   padding: 7px;
-  background: #f9f9f9;
   border-radius: 8px;
+  background-color: rgb(255, 253, 253) !important;
+  color: black !important;
 }
 
+.form-group h4{
+  color: black;
+}
 
-
+.mat-form-field {
+  margin: 2px 0 !important;
+  font-size: 13px;
+  line-height: 1.5;
+  height: 58px;
+}

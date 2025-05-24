@@ -15,7 +15,7 @@ table {
 }
 
 .candidate-table {
-  flex: 2 1 500px;
+  flex: 2 1 700px;
   overflow-x: auto;
   border: 1px solid #121d12;
   white-space: nowrap;
@@ -29,30 +29,28 @@ table {
     flex-direction: column;
   }
 
-  .employee-form,
-  .employee-table {
+  .candidate-form,
+  .candidate-table {
     width: 100%;
     max-width: 100%;
     border: none;
   }
 
-  .employee-table table {
+  .candidate-table table {
     min-width: 600px; 
-    
   }
 }
 
-.employee-form {
+.candidate-form {
   flex: 1 1 300px;
-  max-width: 350px;
-  max-height: 600px;
+  max-width: 300px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   border: 1px solid #4CAF50;
-  gap: 2px;
+  gap: 0px;
   padding: 7px;
   background: #f9f9f9;
   border-radius: 8px;
@@ -60,4 +58,11 @@ table {
 
 .btn-hire{
   border: 1px solid #a84189;
+}
+
+.mat-form-field {
+  margin: 2px 0 !important;
+  font-size: 13px; 
+  line-height: 1.5;
+  height: 58px; 
 }

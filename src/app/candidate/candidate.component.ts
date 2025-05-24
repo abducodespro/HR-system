@@ -9,14 +9,15 @@ import { Employee } from '../models/employee.model';
 @Component({
   selector: 'app-candidate',
   templateUrl: './candidate.component.html',
-  styleUrls: ['./candidate.component.css']
+  styleUrls: ['./candidate.component.css'],
 })
+
 export class CandidateComponent implements OnInit {
   candidates: Candidate[] = [];
   employees: Employee[] = [];
   dpts: Department[] = [];
-  formData: Candidate = { id: 0, name: '', email: '', phone: null, position: '', departmentId: 0, salary:0 }
-  displayedColumns: string[] = ['name', 'email', 'phone', 'appliedPosition', 'actions']
+  formData: Candidate = { id: 0, name: '', email: '', phone: null, position: '', departmentId: 0, salary: null }
+  displayedColumns: string[] = ['name', 'email', 'phone', 'position', 'department', 'salary', 'actions']
 
   constructor(private candService: CandidateService, private dptService: DepartmentService,
     private emplService: EmployeeService
@@ -32,7 +33,7 @@ export class CandidateComponent implements OnInit {
     this.candService.getCandidates().subscribe(data => this.candidates = data)
   }
 
-  getDepartmentName(id: number): string{
+  getDepartmentName(id: number): string {
     const dept = this.dpts.find(d => d.id === id)
     return dept ? dept.name : 'Unknown';
   }
@@ -47,29 +48,29 @@ export class CandidateComponent implements OnInit {
   }
 
   hire(id: number) {
-  const maxId = this.employees.length ? Math.max(...this.employees.map(d => d.id)) : 0;
-  const empId = maxId + 1;
+    const maxId = this.employees.length ? Math.max(...this.employees.map(d => d.id)) : 0;
+    const empId = maxId + 1;
 
-  const candidate = this.candidates.find(d => d.id === id);
-  if (!candidate) {
-    console.error('Candidate not found');
-    return;
+    const candidate = this.candidates.find(d => d.id === id);
+    if (!candidate) {
+      console.error('Candidate not found');
+      return;
+    }
+
+    const newEmployee: Employee = {
+      id: empId,
+      name: candidate.name,
+      position: candidate.position,
+      departmentId: candidate.departmentId,
+      phone: candidate.phone,
+      salary: candidate.salary,
+    };
+
+    this.emplService.addEmployee(newEmployee).subscribe(() => {
+      console.log('Employee hired successfully');
+      this.loadCandidates();
+    });
   }
-
-  const newEmployee: Employee = {
-    id: empId,
-    name: candidate.name,
-    position: candidate.position,
-    departmentId: candidate.departmentId,
-    phone: candidate.phone,
-    salary: candidate.salary,
-  };
-
-  this.emplService.addEmployee(newEmployee).subscribe(() => {
-    console.log('Employee hired successfully');
-    this.loadCandidates(); 
-  });
-}
 
 
   edit(candidate: Candidate) {

@@ -6,20 +6,20 @@
     <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="employee-form">
       <div class="form-group">
         <h4>Add/Edit Form</h4>
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <input matInput placeholder="Name" [(ngModel)]="formData.name" name="name" required />
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <input matInput placeholder="Position" [(ngModel)]="formData.position" name="position" required />
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <input matInput placeholder="phone" [(ngModel)]="formData.phone" name="phone"
             type="number" required />
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <mat-select placeholder="department" [(ngModel)]="formData.departmentId" name="departmentId" required>
             <mat-option *ngFor="let dept of dpts" [value]="dept.id">
               {{ dept.name }}
@@ -27,7 +27,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <input matInput placeholder="Salary" [(ngModel)]="formData.salary" name="salary" type="number" required />
         </mat-form-field>
 

@@ -13,8 +13,8 @@ export class DataService implements InMemoryDbService{
         ];
 
         const candidates = [
-            {id: 1, name: 'jhon', email: 'jhon@gmail.com', phone: 918181818, departmentId: 1},
-            {id: 2, name: 'jhon', email: 'jhon@gmail.com', phone: 918181818, departmentId: 2},
+            {id: 1, name: 'jhon', email: 'jhon@gmail.com', phone: 918181818, position: 'developer', departmentId: 1, salary: 20000},
+            {id: 2, name: 'jhon', email: 'jhon@gmail.com', phone: 918181818, position: 'developer', departmentId: 2, salary: 14000},
         ];
 
         const departments = [
@@ -25,11 +25,11 @@ export class DataService implements InMemoryDbService{
         ];
 
         const salaries = [
-            {id: 0, employee: 'abb', amount: '20000', date: '10-11-2024'},
+            {id: 1, employee: 'abb', amount: '20000', date: '10-11-2024'},
         ];
 
         const companies = [
-            {id: 0, name: 'xyz', location: 'addis ababa'}
+            {id: 1, name: 'xyz', location: 'addis ababa'}
         ]
         
         return{ employees, candidates, departments, salaries, companies }

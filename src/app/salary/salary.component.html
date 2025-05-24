@@ -5,15 +5,15 @@
     <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="salary-form">
       <div class="form-group">
         <h4>Add/Edit Form</h4>
-        <mat-form-field appearance="fill">
+        <mat-form-field >
           <input matInput placeholder="employee" [(ngModel)]="formData.employee" name="employee" required />
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field >
           <input matInput placeholder="amount" [(ngModel)]="formData.amount" name="amount" required />
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field >
           <input matInput placeholder="date" [(ngModel)]="formData.date" name="date"  required />
         </mat-form-field>
 

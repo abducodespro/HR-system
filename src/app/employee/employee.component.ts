@@ -51,6 +51,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   resetForm() {
-    this.formData = { id: 0, name: '', position: '', departmentId: 0, phone: 0, salary: 0 };
+    this.formData = { id: 0, name: '', position: '', departmentId: 0, phone: null, salary: null };
   }
 }
