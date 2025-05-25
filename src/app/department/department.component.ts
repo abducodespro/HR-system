@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Department } from '../models/department.model';
 import { HttpClient } from '@angular/common/http';
 import { DepartmentService } from '../services/department.service';
+import { Company } from '../models/company.model';
+import { CompanyService } from '../services/company.service';
 
 @Component({
   selector: 'app-department',
@@ -10,10 +12,11 @@ import { DepartmentService } from '../services/department.service';
 })
 export class DepartmentComponent implements OnInit {
   departments: Department[] = [];
-  formData: Department = { id: 0, name: '' }
-  displayedColumns: string[] = ['id', 'name', 'actions']
+  companys: Company[] = []
+  formData: Department = { id: 0, name: '', companyId: null }
+  displayedColumns: string[] = ['id', 'name', 'company', 'actions']
 
-  constructor(private dptService: DepartmentService) { }
+  constructor(private dptService: DepartmentService, private cmpService: CompanyService) { }
 
   ngOnInit() {
     this.loadDepartment();
@@ -21,6 +24,12 @@ export class DepartmentComponent implements OnInit {
 
   loadDepartment() {
     this.dptService.getDepartments().subscribe(data => this.departments = data);
+    this.cmpService.getCompanies().subscribe(data => this.companys = data)
+  }
+
+  getCompanyName(id: number){
+    const cmp = this.companys.find(c => c.id === id);
+    return cmp? cmp.name: 'unknown';
   }
 
   onSubmit() {
@@ -44,7 +53,7 @@ export class DepartmentComponent implements OnInit {
   }
 
   resetForm() {
-    this.formData = { id: 0, name: '' }
+    this.formData = { id: 0, name: '', companyId: null }
   }
 
 }

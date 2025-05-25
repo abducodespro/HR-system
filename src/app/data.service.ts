@@ -18,10 +18,10 @@ export class DataService implements InMemoryDbService{
         ];
 
         const departments = [
-            {id: 1, name: 'Software Engineer'},
-            {id: 2, name: 'Computer Science'},
-            {id: 3, name: 'Accounting'},
-            {id: 4, name: 'Management'}
+            {id: 1, name: 'Software Engineer', companyId: 1},
+            {id: 2, name: 'Computer Science', companyId: 1},
+            {id: 3, name: 'Accounting', companyId: 1},
+            {id: 4, name: 'Management', companyId: 1}
         ];
 
         const salaries = [

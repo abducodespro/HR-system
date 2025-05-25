@@ -41,6 +41,7 @@ export class CandidateComponent implements OnInit {
   onSubmit() {
     if (this.formData.id === 0) {
       this.candService.addCandidate(this.formData).subscribe(() => this.loadCandidates());
+      alert('candidate added successfully')
     } else {
       this.candService.updateCandidate(this.formData).subscribe(() => this.loadCandidates());
     }
@@ -67,8 +68,8 @@ export class CandidateComponent implements OnInit {
     };
 
     this.emplService.addEmployee(newEmployee).subscribe(() => {
-      console.log('Employee hired successfully');
-      this.loadCandidates();
+      alert('Employee hired successfully');
+      this.delete(candidate.id);
     });
   }
 

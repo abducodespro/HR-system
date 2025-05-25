@@ -9,39 +9,41 @@ import { CompanyService } from '../services/company.service';
 })
 export class CompanyComponent implements OnInit {
   companies: Company[] = [];
-  formData: Company = {id: 0, name: '', location: ''};
+  formData: Company = { id: 0, name: '', location: '' };
   displayedColumns: string[] = ['id', 'name', 'location', 'actions'];
 
   constructor(private comService: CompanyService) { }
 
   ngOnInit() {
-      this.loadCompany();
+    this.loadCompany();
+  }
+
+  loadCompany() {
+    this.comService.getCompanies().subscribe(data => this.companies = data);
+  }
+
+  onSubmit() {
+    if (this.formData.id === 0) {
+      const maxId = this.companies.length ? Math.max(...this.companies.map(d => d.id)) : 0;
+      this.formData.id = maxId + 1;
+      this.comService.addCompanies(this.formData).subscribe(() => this.loadCompany())
+    } else {
+      this.comService.updateCompany(this.formData).subscribe(() => this.loadCompany())
     }
-  
-    loadCompany(){
-      this.comService.getCompanies().subscribe(data => this.companies = data);
-    }
-  
-    onSubmit(){
-      if(this.formData.id === 0){
-        this.comService.addCompanies(this.formData).subscribe(()=> this.loadCompany())
-      }else{
-        this.comService.updateCompany(this.formData).subscribe(() => this.loadCompany())
-      }
-  
-      this.resetForm()
-    }
-  
-    edit(company: Company){
-      this.formData = {...company}
-    }
-  
-    delete(id: number){
-      this.comService.deleteCompany(id).subscribe(()=> this.loadCompany())
-    }
-  
-    resetForm(){
-      this.formData = {id: 0, name: '', location: ''}
-    }
+
+    this.resetForm()
+  }
+
+  edit(company: Company) {
+    this.formData = { ...company }
+  }
+
+  delete(id: number) {
+    this.comService.deleteCompany(id).subscribe(() => this.loadCompany())
+  }
+
+  resetForm() {
+    this.formData = { id: 0, name: '', location: '' }
+  }
 
 }
