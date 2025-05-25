@@ -12,9 +12,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .dark-theme {
-  --bg-color: #121212;
+  --bg-color: #313131;
   --text-color: #ffffff;
-  --toolbar-bg: #333333;
+  --toolbar-bg: #6d6b6b;
   --sidenav-bg: #1e1e1e;
 }
 
@@ -28,6 +28,11 @@ body {
 .mat-toolbar {
   background-color: var(--toolbar-bg) !important;
   color: var(--text-color) !important;
+}
+
+.dark-theme .form-group{
+    background-color: #f0e8e8 !important;
+    color: #241e1e !important;
 }
 
 .mat-sidenav {

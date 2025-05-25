@@ -5,15 +5,12 @@
     <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="company-form">
       <div class="form-group">
         <h4>Add/Edit Form</h4>
-        <mat-form-field appearance="fill">
-          <input matInput placeholder="ID" [(ngModel)]="formData.id" name="id" required />
-        </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field >
           <input matInput placeholder="Name" [(ngModel)]="formData.name" name="name" required />
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field >
           <input matInput placeholder="location" [(ngModel)]="formData.location" name="location" required />
         </mat-form-field>
 

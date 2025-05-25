@@ -1,5 +1,8 @@
 .dpt-container {
   padding: 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
 }
 
 table {
@@ -12,12 +15,14 @@ table {
   gap: 1rem;
   align-items: flex-start;
   flex-direction: row; 
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .dpt-table {
   flex: 2 1 500px;
   overflow-x: auto;
-  border: 1px solid #121d12;
+  border: 1px solid var(--text-color) !important;
   white-space: nowrap;
   max-width: 100%;
   padding: 10px;

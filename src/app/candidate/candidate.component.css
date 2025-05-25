@@ -1,5 +1,7 @@
 .candidate-container {
   padding: 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 table {
@@ -12,12 +14,14 @@ table {
   gap: 1rem;
   align-items: flex-start;
   flex-direction: row; 
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .candidate-table {
   flex: 2 1 700px;
   overflow-x: auto;
-  border: 1px solid #121d12;
+  border: 1px solid var(--text-color) !important;
   white-space: nowrap;
   max-width: 100%;
   padding: 10px;
@@ -52,7 +56,6 @@ table {
   border: 1px solid #4CAF50;
   gap: 0px;
   padding: 7px;
-  background: #f9f9f9;
   border-radius: 8px;
 }
 

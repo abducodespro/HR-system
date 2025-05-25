@@ -1,5 +1,8 @@
 .company-container {
   padding: 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
 }
 
 table {
@@ -17,7 +20,7 @@ table {
 .company-table {
   flex: 2 1 500px;
   overflow-x: auto;
-  border: 1px solid #121d12;
+  border: 1px solid var(--text-color) !important;
   white-space: nowrap;
   max-width: 100%;
   padding: 10px;
@@ -54,6 +57,5 @@ table {
   border: 1px solid #4CAF50;
   gap: 2px;
   padding: 7px;
-  background: #f9f9f9;
   border-radius: 8px;
 }
