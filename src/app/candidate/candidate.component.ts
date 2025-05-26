@@ -70,7 +70,7 @@ export class CandidateComponent implements OnInit {
     };
 
     this.emplService.addEmployee(newEmployee).subscribe(() => {
-      this.snackbar.open('Candidate hired successfuly!', 'Close', {
+      this.snackbar.open('Candidate hired successfuly!!', 'Close', {
         duration: 3000,
         horizontalPosition: 'right',
         verticalPosition: 'top',
