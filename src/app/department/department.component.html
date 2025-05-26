@@ -1,8 +1,8 @@
-<div class="dpt-container">
+<div class="head-container">
   <h2>Departments</h2>
 
   <div class="form-table-container">
-    <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="dpt-form">
+    <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="form-container">
       <div class="form-group">
         <h4>Add/Edit Form</h4>
 
@@ -24,7 +24,7 @@
       </div>
     </form>
 
-    <div class="dpt-table">
+    <div class="table-container">
       <h3>Department List</h3>
       <table mat-table [dataSource]="departments" class="mat-elevation-z8">
 

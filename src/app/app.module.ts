@@ -4,7 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSelectModule, MatTableModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -17,6 +25,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { SalaryComponent } from './salary/salary.component';
 import { HomeComponent } from './home/home.component';
+import { MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { ConfirmDialogComponent } from './confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +36,15 @@ import { HomeComponent } from './home/home.component';
     DepartmentComponent,
     CompanyComponent,
     SalaryComponent,
-    HomeComponent
+    HomeComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    MatSnackBarModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatSidenavModule,
@@ -54,6 +67,7 @@ import { HomeComponent } from './home/home.component';
       useValue: {appearance: 'outline', subscriptSizing: 'dynamic'}
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ConfirmDialogComponent]
 })
 export class AppModule { }

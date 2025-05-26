@@ -2,6 +2,7 @@
   padding: 20px;
   background-color: var(--bg-color);
   color: var(--text-color);
+  height: auto;
 }
 
 table {
@@ -21,7 +22,7 @@ table {
 .candidate-table {
   flex: 2 1 700px;
   overflow-x: auto;
-  border: 1px solid var(--text-color) !important;
+  border: 1px solid var(--text-color);
   white-space: nowrap;
   max-width: 100%;
   padding: 10px;
@@ -37,17 +38,17 @@ table {
   .candidate-table {
     width: 100%;
     max-width: 100%;
-    border: none;
+    border: none !important;
   }
 
   .candidate-table table {
-    min-width: 600px; 
+    width: 800px !important; 
   }
 }
 
 .candidate-form {
   flex: 1 1 300px;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 .form-group {

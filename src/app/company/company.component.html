@@ -1,8 +1,8 @@
-<div class="company-container">
+<div class="head-container">
   <h2>Companies</h2>
 
   <div class="form-table-container">
-    <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="company-form">
+    <form (ngSubmit)="onSubmit()" #empForm="ngForm" class="form-container">
       <div class="form-group">
         <h4>Add/Edit Form</h4>
 
@@ -20,7 +20,7 @@
       </div>
     </form>
 
-    <div class="company-table">
+    <div class="table-container">
       <h3>Company List</h3>
       <table mat-table [dataSource]="companies" class="mat-elevation-z8">
 

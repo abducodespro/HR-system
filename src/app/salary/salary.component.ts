@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Salary } from '../models/salary.model';
 import { SalaryServices } from '../services/salary.service';
+import { Employee } from '../models/employee.model';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-salary',
@@ -8,39 +10,37 @@ import { SalaryServices } from '../services/salary.service';
   styleUrls: ['./salary.component.css']
 })
 export class SalaryComponent implements OnInit {
-  salaries: Salary[] = [];
-  formData: Salary = {id: 0, employee: '', amount: 0, date: ''};
-  displayedColumns: string[] = ['employee', 'amount', 'date', 'actions']
+  employees: Employee[] = [];
+  formData: Employee = {id: 0, name: '', salary: null, position: '', departmentId: null, phone: null};
+  displayedColumns: string[] = ['name', 'salary', 'actions']
 
-  constructor(private salaryService: SalaryServices) { }
+  constructor(private empService: EmployeeService) { }
+
+  isEditing = false;
 
   ngOnInit() {
     this.loadSalary()
   }
 
   loadSalary(){
-    this.salaryService.getSalaries().subscribe(data => this.salaries = data)
+    this.empService.getEmployees().subscribe(d => this.employees = d);
   }
 
   onSubmit(){
-    if(this.formData.id === 0){
-      this.salaryService.addSalary(this.formData).subscribe(()=> this.loadSalary())
-    }else{
-      this.salaryService.updateSalary(this.formData).subscribe(()=> this.loadSalary())
-    }
+    if (!this.isEditing) return;
+      this.empService.updateEmployee(this.formData).subscribe(()=> this.loadSalary())
+    
     this.setForm()
   }
 
-  edit(salary: Salary){
-    this.formData = {...salary}
-  }
-
-  delete(id: number){
-    this.salaryService.deleteSalary(id).subscribe(()=> this.loadSalary())
+  edit(employee: Employee){
+    this.formData = {...employee}
+    this.isEditing = true
   }
 
   setForm(){
-    this.formData = {id: 0, employee: '', amount: 0, date: ''}
+    this.formData = {id: 0, name: '', salary: null, position: '', departmentId: null, phone: null}
+    this.isEditing= false
   }
 
 }

@@ -9,12 +9,12 @@ import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  {path:'', component: HomeComponent},
-  {path:'employee', component: EmployeeComponent},
-  {path:'candidate', component: CandidateComponent},
-  {path:'department', component: DepartmentComponent},
-  {path:'salary', component: SalaryComponent},
-  {path:'company', component: CompanyComponent},
+  {path: '', component: HomeComponent},
+  {path: 'employee', component: EmployeeComponent},
+  {path: 'candidate', component: CandidateComponent},
+  {path: 'department', component: DepartmentComponent},
+  {path: 'salary', component: SalaryComponent},
+  {path: 'company', component: CompanyComponent},
 ];
 
 @NgModule({

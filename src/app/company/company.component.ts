@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../models/company.model';
 import { CompanyService } from '../services/company.service';
+import { MatDialog } from '@angular/material';
+import { ConfirmDialogComponent } from '../confirm-dialog.component';
 
 @Component({
   selector: 'app-company',
@@ -12,7 +14,7 @@ export class CompanyComponent implements OnInit {
   formData: Company = { id: 0, name: '', location: '' };
   displayedColumns: string[] = ['id', 'name', 'location', 'actions'];
 
-  constructor(private comService: CompanyService) { }
+  constructor(private comService: CompanyService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadCompany();
@@ -39,7 +41,12 @@ export class CompanyComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.comService.deleteCompany(id).subscribe(() => this.loadCompany())
+    const dialogRef = this.dialog.open(ConfirmDialogComponent)
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.comService.deleteCompany(id).subscribe(() => this.loadCompany())
+      }
+    })
   }
 
   resetForm() {

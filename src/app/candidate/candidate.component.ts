@@ -5,6 +5,8 @@ import { Department } from '../models/department.model';
 import { DepartmentService } from '../services/department.service';
 import { EmployeeService } from '../services/employee.service';
 import { Employee } from '../models/employee.model';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { ConfirmDialogComponent } from '../confirm-dialog.component';
 
 @Component({
   selector: 'app-candidate',
@@ -20,7 +22,7 @@ export class CandidateComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'phone', 'position', 'department', 'salary', 'actions']
 
   constructor(private candService: CandidateService, private dptService: DepartmentService,
-    private emplService: EmployeeService
+    private emplService: EmployeeService, private snackbar: MatSnackBar, private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -68,8 +70,12 @@ export class CandidateComponent implements OnInit {
     };
 
     this.emplService.addEmployee(newEmployee).subscribe(() => {
-      alert('Employee hired successfully');
-      this.delete(candidate.id);
+      this.snackbar.open('Candidate hired successfuly!', 'Close', {
+        duration: 3000,
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+      });
+      this.candService.deleteCandidate(candidate.id).subscribe(() => this.loadCandidates());
     });
   }
 
@@ -79,7 +85,12 @@ export class CandidateComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.candService.deleteCandidate(id).subscribe(() => this.loadCandidates());
+    const dialogRef = this.dialog.open(ConfirmDialogComponent)
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.candService.deleteCandidate(id).subscribe(() => this.loadCandidates());
+      }
+    })
   }
 
   resetForm() {

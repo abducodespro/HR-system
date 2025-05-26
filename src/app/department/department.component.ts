@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { DepartmentService } from '../services/department.service';
 import { Company } from '../models/company.model';
 import { CompanyService } from '../services/company.service';
+import { MatDialog } from '@angular/material';
+import { ConfirmDialogComponent } from '../confirm-dialog.component';
 
 @Component({
   selector: 'app-department',
@@ -16,7 +18,9 @@ export class DepartmentComponent implements OnInit {
   formData: Department = { id: 0, name: '', companyId: null }
   displayedColumns: string[] = ['id', 'name', 'company', 'actions']
 
-  constructor(private dptService: DepartmentService, private cmpService: CompanyService) { }
+  constructor(private dptService: DepartmentService, private cmpService: CompanyService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.loadDepartment();
@@ -49,7 +53,12 @@ export class DepartmentComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.dptService.deleteDepartment(id).subscribe(() => this.loadDepartment())
+    const dialogRef = this.dialog.open(ConfirmDialogComponent)
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.dptService.deleteDepartment(id).subscribe(() => this.loadDepartment())
+      }
+    })
   }
 
   resetForm() {
